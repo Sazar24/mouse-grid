@@ -13,22 +13,25 @@ class GridMaker:
         pass
 
     def run(self) -> None:
-        print("Grid is running....")
+        print("Starting grid...")
         self.initiateAndStartWindow()
-        pass
-
-    def bringWindowToTop(self) -> None:
-        pass
-
-    def hideWindow(self) -> None:
         pass
 
     def initiateAndStartWindow(self) -> None:
         self._startListening()
         self._drawLines()
+        self.bindKeys()
         self.startTkWindowLoop()
         self._startCalc()
 
+    def bringWindowToTop(self) -> None:
+        self.window.update()
+        self.window.deiconify()
+        pass
+
+    def hideWindow(self) -> None:
+        self.window.update()
+        self.window.withdraw()
         pass
 
     def _drawLines(self) -> None:
@@ -36,6 +39,10 @@ class GridMaker:
 
     def _startListening(self) -> None:
         self.__listener__.callOn_i_ = self._sthCallable
+        self.__listener__.passActionCallers(
+            self.hideWindow,
+            self.bringWindowToTop
+        )
         self.__listener__.run()
 
     def _sthCallable(self) -> None:
@@ -54,3 +61,6 @@ class GridMaker:
 
     def startTkWindowLoop(self) -> None:
         self.window.mainloop()
+
+    def bindKeys(self) -> None:
+        self.window.bind("k", lambda _: print("k pressed"))

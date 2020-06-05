@@ -27,8 +27,15 @@ class GlobalKeystrokeListerner:
 
     def _on_activate_i(self) -> None:
         print('<ctrl>+<alt>+i pressed')
+        self.hide()
         self.callOn_i_()
 
     def _appBringerHotkeyPressed(self) -> None:
         print("App bringer has been pressed!")
+        self.show()
+        pass
+
+    def passActionCallers(self, hide, show) -> None:
+        self.hide = hide
+        self.show = show
         pass
