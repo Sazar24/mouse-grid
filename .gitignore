@@ -1,0 +1,7 @@
+# compiling trash:
+**/__pycache__
+**mypy_cache
+# **/__init__.py
+
+# virtual-environment
+/venv

@@ -1,0 +1,32 @@
+{
+    "files.exclude": {
+        // ".vscode/": true,
+        // "**/__pycache__": true,
+        // "**mypy_cache": true,
+        // "**/__init__.py": true,
+    },
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.pythonPath": "${workspaceFolder}/venv/Scripts/python.exe",
+    "mypy.executable": "${workspaceFolder}/venv/Scripts/mypy.exe",
+    "python.linting.mypyArgs": [
+        "--ignore-missing-imports",
+        "--follow-imports=silent",
+        "--show-column-numbers",
+        // "--strict"
+    ],
+    "python.linting.pylintArgs": [
+        "--ignore-relative-beyond-top-level--CheckMe",
+        "--max-line-length=180"
+    ],
+    "python.linting.flake8Args": [
+        "--ignore=E501,E722",
+        "--max-line-length=180"
+    ],
+    // "python.formatting.autopep8Args": [
+    //     "--max-line-length=180"
+    // ]
+    // "python.jediEnabled": false
+}

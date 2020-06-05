@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "activate": "venv\\Scripts\\activate.bat",
+        "start": "src\\app.py",
+        "mypy": "mypy src & echo \n----"
+    }
+}
