@@ -1,41 +1,33 @@
 # import pynput
 # https://pynput.readthedocs.io/en/latest/keyboard.html
 
+# from __future__ import annotations
+# from typing import TYPE_CHECKING
 from pynput import keyboard
-from typing import Callable
+# if TYPE_CHECKING:
+#     from app.grid import GridMaker
+from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
+import tkinter as tk
 
 
 class GlobalKeystrokeListerner:
+    def __init__(self, tkWindow: tk.Tk):
+        self.windowActionsCaller = WindowActionsCaller(tkWindow)
+        pass
+
     def run(self) -> None:
         print("in: GlobalKeystrokeListerner.run")
         self.startListeninig()
 
     def startListeninig(self) -> None:
         self.listener = keyboard.GlobalHotKeys({
-            '<ctrl>+<alt>+h': self._on_activate_h,
-            '<ctrl>+<alt>+i': self._on_activate_i,
+            '<alt>+q': self.windowActionsCaller.hideWindow,
             '<alt>+`': self._appBringerHotkeyPressed
         })
         self.listener.start()
         print("listening...")
 
-    def _on_activate_h(self) -> None:
-        print('<ctrl>+<alt>+h pressed')
-        self.listener.stop()
-
-    callOn_i_: Callable[..., None]
-
-    def _on_activate_i(self) -> None:
-        print('<ctrl>+<alt>+i pressed')
-        self.hide()
-        self.callOn_i_()
-
     def _appBringerHotkeyPressed(self) -> None:
         print("App bringer has been pressed!")
-        self.show()
-        pass
-
-    def passActionCallers(self, hide, show) -> None:
-        self.hide = hide
-        self.show = show
+        self.windowActionsCaller.bringWindowToTop()
         pass

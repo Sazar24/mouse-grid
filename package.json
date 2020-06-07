@@ -1,7 +1,10 @@
 {
     "scripts": {
-        "activate": "venv\\Scripts\\activate.bat",
-        "start": "src\\app.py",
-        "mypy": "mypy src & echo \n----"
+        "activate_old": "venv\\Scripts\\activate.bat",
+        "activate": "cd venv/Scripts && activate.bat",
+        "start": "python src\\appStart.py",
+        "mypy": "mypy src & echo \n----", 
+        "build": "pyinstaller --noconfirm src\\appStart.py --paths=src --hidden-import=pynput --icon=grid-ico.ico",
+        "saveDependencies": "pip freeze > requirements.txt"
     }
 }

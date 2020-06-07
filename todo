@@ -1,0 +1,8 @@
+# 
+- 2020.06.06
+- window-focus 
+-- można zrobić przez PID
+---- jeżeli przez win32, kursor będzie uciekać. Będzie potrzebne dorobienie przywracanie jego pozycji
+
+- to na później, bo jeżeli nie wychodzić z aplikacji alt+tabem, to aplikacja nie straci focus'u.
+

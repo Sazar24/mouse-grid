@@ -5,3 +5,7 @@
 
 # virtual-environment
 /venv
+
+# exe version:
+/build
+/dist
