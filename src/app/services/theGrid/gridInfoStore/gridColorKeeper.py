@@ -1,7 +1,9 @@
 from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
 from typing import List
+from injector import singleton
 
 
+# @singleton
 class GridColorKeeper(metaclass=SingleInstanceMetaClass):
     possibleColors: List[str] = [
         "gray1",

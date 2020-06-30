@@ -4,9 +4,13 @@ from app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoo
 from app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
 from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
 from typing import Tuple, List
+from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
+from injector import singleton
 
 
-class GridLinesPainter:
+# class GridLinesPainter(metaclass=SingleInstanceMetaClass):
+@singleton
+class GridLinesPainter():
     def __init__(self):
         self.gridDensity: int = 15
         self.initFullscreenCanvas()

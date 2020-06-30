@@ -3,31 +3,36 @@
 
 # from __future__ import annotations
 # from typing import TYPE_CHECKING
+from injector import inject
+import tkinter as tk
 from pynput import keyboard
 # if TYPE_CHECKING:
 #     from app.grid import GridMaker
 from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
-import tkinter as tk
+from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
+from app.ioc.container.container import AppContainer
 
 
 class GlobalKeystrokeListerner:
-    def __init__(self, tkWindow: tk.Tk):
-        self.windowActionsCaller = WindowActionsCaller(tkWindow)
+    @inject
+    def __init__(self, windowKeeper: WindowInstanceKeeper):
+        window = windowKeeper.getWindow()
+        self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)
         pass
 
     def run(self) -> None:
         print("in: GlobalKeystrokeListerner.run")
-        self.startListeninig()
+        self.__startListeninig()
 
-    def startListeninig(self) -> None:
+    def __startListeninig(self) -> None:
         self.listener = keyboard.GlobalHotKeys({
             '<alt>+q': self.windowActionsCaller.hideWindow,
-            '<alt>+`': self._appBringerHotkeyPressed
+            '<alt>+`': self.__appBringerHotkeyPressed
         })
         self.listener.start()
         print("listening...")
 
-    def _appBringerHotkeyPressed(self) -> None:
+    def __appBringerHotkeyPressed(self) -> None:
         print("App bringer has been pressed!")
         self.windowActionsCaller.bringWindowToTop()
         pass

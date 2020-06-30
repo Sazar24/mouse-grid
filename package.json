@@ -1,6 +1,7 @@
 {
     "scripts": {
         "activate_old": "venv\\Scripts\\activate.bat",
+        "activate::pre": "python -m venv venv",
         "activate": "cd venv/Scripts && activate.bat",
         "start": "python src\\appStart.py",
         "mypy": "mypy src & echo \n----", 

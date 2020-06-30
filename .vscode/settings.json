@@ -3,7 +3,7 @@
     "files.exclude": {
         // ".vscode/": true,
         "**/__pycache__": true,
-        // "**mypy_cache": true,
+        "**mypy_cache": true,
         // "**/__init__.py": true,
     },
     "python.linting.pylintEnabled": false,
@@ -30,7 +30,4 @@
     "python.formatting.autopep8Args": [
         "--max-line-length=180"
     ],
-    "python.jediEnabled": false,
-    "python.languageServer": "Microsoft",
-    // "python.languageServer": "Microsoft"
 }

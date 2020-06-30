@@ -1,11 +1,15 @@
 
 import tkinter as tk
+from injector import inject
+# from app.ioc.container.container import AppContainer
+from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
 
 
 class WindowActionsCaller:
+    @inject
     # def __init__(self, gridMaker: GridMaker):
-    def __init__(self, gridWindow: tk.Tk):
-        self.window: tk.Tk = gridWindow
+    def __init__(self, windowInstanceKeeper: WindowInstanceKeeper):
+        self.window: tk.Tk = windowInstanceKeeper.getWindow()
 
     def bringWindowToTop(self) -> None:
         self.window.update()

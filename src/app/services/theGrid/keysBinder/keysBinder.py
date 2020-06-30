@@ -1,24 +1,35 @@
 import tkinter as tk
+from injector import inject
 from typing import Callable
 
+from app.ioc.container.container import AppContainer
 from app.services.theGrid.painter.gridLinesPainter import GridLinesPainter
 from app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
 from app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
 from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
 from app.services.mouseEmulator.mouseEventsCreator import MouseEventsCreator
 from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
+from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
 
 
 class KeysBinder:
-    def __init__(self, linesPainter: GridLinesPainter, tkWindow: tk.Tk):
-        self.linesPainter: GridLinesPainter = linesPainter
-        self.gridWindow: tk.Tk = tkWindow
-        self._bindBasicKeys()
-        self.coordsStore = GridLinesCoordsStore()
-        self.colorPicker = GridColorKeeper()
+    @inject
+    def __init__(
+        self,
+        windowInstanceKeeper: WindowInstanceKeeper,
+        gridLinesPainter: GridLinesPainter,
+        colorPicker: GridColorKeeper,
+    ):
+        # self.linesPainter: GridLinesPainter = AppContainer.container.get(GridLinesPainter)
+        self.linesPainter: GridLinesPainter = gridLinesPainter
+        self.gridWindow: tk.Tk = windowInstanceKeeper.getWindow()
+        self.colorPicker = colorPicker
         self.activeRectangleKeeper = ActiveRectangleKeeper()
         self.mouseEventsCreator = MouseEventsCreator()
-        self.windowActionsCaller = WindowActionsCaller(tkWindow)
+        # self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)
+        self.windowActionsCaller = WindowActionsCaller
+        self.coordsStore = GridLinesCoordsStore()
+        self._bindBasicKeys()
 
     def _bindBasicKeys(self) -> None:
         self.gridWindow.bind('<Escape>', lambda _: self.gridWindow.destroy())
