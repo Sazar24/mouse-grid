@@ -10,6 +10,7 @@ from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRecta
 from app.services.mouseEmulator.mouseEventsCreator import MouseEventsCreator
 from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
 from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
+from app.services.theGrid.keysBinder.keybindsListExtractor.keybindsListExtractor import KeybindsListExtractor
 
 
 class KeysBinder:
@@ -19,16 +20,19 @@ class KeysBinder:
         windowInstanceKeeper: WindowInstanceKeeper,
         gridLinesPainter: GridLinesPainter,
         colorPicker: GridColorKeeper,
+        keyBindsLisExtractor: KeybindsListExtractor
     ):
         # self.linesPainter: GridLinesPainter = AppContainer.container.get(GridLinesPainter)
         self.linesPainter: GridLinesPainter = gridLinesPainter
         self.gridWindow: tk.Tk = windowInstanceKeeper.getWindow()
         self.colorPicker = colorPicker
+        self.keyBindsListExtractor = keyBindsLisExtractor
         self.activeRectangleKeeper = ActiveRectangleKeeper()
         self.mouseEventsCreator = MouseEventsCreator()
         # self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)
         self.windowActionsCaller = WindowActionsCaller
         self.coordsStore = GridLinesCoordsStore()
+        self.keyBindsListExtractor.readParams()
         self._bindBasicKeys()
 
     def _bindBasicKeys(self) -> None:

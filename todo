@@ -6,3 +6,11 @@
 
 - to na później, bo jeżeli nie wychodzić z aplikacji alt+tabem, to aplikacja nie straci focus'u.
 
+
+# 
+2020.07.02
+- skróty klawiszowe w pliku
+-- json
+-- nasłuchiwanie na file-change-event
+---- watchdog (pip)
+

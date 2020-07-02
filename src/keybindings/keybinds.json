@@ -1,0 +1,65 @@
+{
+    "help": {
+        "hint": [
+            "program will not validate compability of your keybinds-names. Do some smoke-tests on your own. Play according to given examples. Cheers."
+        ],
+        "allowedKeys-examples": {
+            "normal": "qwertyuiopasdfghjklzxcvbnm[]';,./",
+            "modifiers": "",
+            "arrows": [
+                "upArrow",
+                "downArrow",
+                "leftArrow",
+                "rightArrow"
+            ]
+        }
+    },
+    "keybinds": {
+        "events": {
+            "left-mouse-button": "c",
+            "left-mouse-button-press-and-hold": "C",
+            "right-mouse-button": "r",
+            "middle-mouse-button": "m"
+        },
+        "utilities": {
+            "bring-app-to-the-top": "alt+`",
+            "hide-app": [
+                "alt+q",
+                "escape"
+            ],
+            "increase-grid-density": "ctrl+shift+i",
+            "decrease-grid-density": "ctrl+shift+k",
+            "change-color": "C"
+        },
+        "modes": {
+            "toggle-next-mode": "alt+`",
+            "dummy-mode": {
+                "turn-mode-on": "alt+1",
+                "up": "k",
+                "down": "j",
+                "left": "h",
+                "right": "l",
+                "pick": "enter"
+            },
+            "basic-mode": {
+                "turn-mode-on": "alt+2",
+                "up": "upArrow",
+                "down": "downArrow",
+                "left": "leftArrow",
+                "right": "rightArrow",
+                "pick": "enter"
+            },
+            "fragment-picker": {
+                "turn-mode-on": "alt+3",
+                "pick": "enter",
+                "cancel-last-pick": "shift+enter"
+            },
+            "global-mode": {
+                "up": "ctrl+k",
+                "down": "ctrl+j",
+                "left": "ctrl+h",
+                "right": "ctrl+l"
+            }
+        }
+    }
+}
