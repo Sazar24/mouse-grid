@@ -9,8 +9,8 @@ from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanc
 from app.ioc.container.container import AppContainer
 
 
+@inject
 class GridMaker:
-    @inject
     def __init__(
             self,
             windowKeeper: WindowInstanceKeeper,

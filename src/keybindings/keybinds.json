@@ -59,6 +59,15 @@
                 "down": "ctrl+j",
                 "left": "ctrl+h",
                 "right": "ctrl+l"
+            },
+            "vimmy-approach": {
+                "call-app": "alt+`",
+                "description": "labelNameInputtedFocusesOnSquare",
+                "click": "c",
+                "right-click": "r",
+                "middle-click": "m",
+                "divide-for-smaller-tiles": "d",
+                "divide-for-smaller-tiles-nAmount": "d<number>"
             }
         }
     }

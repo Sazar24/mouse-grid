@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['src\\appStart.py'],
-             pathex=['src', 'C:\\projects\\training_ground\\python\\app3'],
+             pathex=['src', 'C:\\projects\\python\\mouse-grid'],
              binaries=[],
              datas=[],
              hiddenimports=['pynput'],

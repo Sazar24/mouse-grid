@@ -13,8 +13,8 @@ from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanc
 from app.ioc.container.container import AppContainer
 
 
+@inject
 class GlobalKeystrokeListerner:
-    @inject
     def __init__(self, windowKeeper: WindowInstanceKeeper):
         window = windowKeeper.getWindow()
         self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)

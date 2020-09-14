@@ -2,10 +2,9 @@ from injector import Injector, inject, singleton
 from .dataKeeper import DataKeeper
 
 
+@inject
 class Reader:
-    @inject
     def __init__(self, dataKeeper: DataKeeper):
-        # self.dataToRead =
         self.dataKeeper = dataKeeper
 
     def read(self):

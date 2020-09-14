@@ -14,3 +14,7 @@
 -- nasłuchiwanie na file-change-event
 ---- watchdog (pip)
 
+#
+2020.09.03
+- params.json
+-- wbudowane ale nadpisywalne

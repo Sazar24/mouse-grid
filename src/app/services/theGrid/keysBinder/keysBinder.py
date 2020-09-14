@@ -13,14 +13,15 @@ from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanc
 from app.services.theGrid.keysBinder.keybindsListExtractor.keybindsListExtractor import KeybindsListExtractor
 
 
+@inject
 class KeysBinder:
-    @inject
     def __init__(
         self,
         windowInstanceKeeper: WindowInstanceKeeper,
         gridLinesPainter: GridLinesPainter,
         colorPicker: GridColorKeeper,
-        keyBindsLisExtractor: KeybindsListExtractor
+        keyBindsLisExtractor: KeybindsListExtractor,
+        windowActionsCaller: WindowActionsCaller
     ):
         # self.linesPainter: GridLinesPainter = AppContainer.container.get(GridLinesPainter)
         self.linesPainter: GridLinesPainter = gridLinesPainter
@@ -30,7 +31,7 @@ class KeysBinder:
         self.activeRectangleKeeper = ActiveRectangleKeeper()
         self.mouseEventsCreator = MouseEventsCreator()
         # self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)
-        self.windowActionsCaller = WindowActionsCaller
+        self.windowActionsCaller = windowActionsCaller
         self.coordsStore = GridLinesCoordsStore()
         self.keyBindsListExtractor.readParams()
         self._bindBasicKeys()
