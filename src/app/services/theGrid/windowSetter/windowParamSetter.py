@@ -1,29 +1,38 @@
 import tkinter as tk
+from injector import inject
+from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
 
 
 class WindowParamSetter:
-    def setParams(self, tkWindowObject: tk.Tk) -> None:
-        self.tkWindowObject: tk.Tk = tkWindowObject
+    @inject
+    def __init__(self, windowInstanceKeeper: WindowInstanceKeeper):
+        self.windowInstanceKeeper = windowInstanceKeeper
+
+    def setParams(self) -> None:
+        self.tkWindowObject = self.windowInstanceKeeper.getWindow()
 
         self._makeWindowTransparent()
         self._makeWindowFullscreen()
         self._setAppTitle()
-        # self._removeTitleBar(tkWindowObject)
-        pass
+        self.__hideWindowFromTaskbar()
+        # self.__makeMultiScreen()
 
     def _makeWindowFullscreen(self) -> None:
         self.tkWindowObject.wm_attributes('-fullscreen', 'true')
 
-        pass
-
     def _makeWindowTransparent(self) -> None:
         self.tkWindowObject.attributes('-transparentcolor', self.tkWindowObject['bg'])
-        pass
-
-    # def _removeTitleBar(self, tkWindowObject: tk.Tk) -> None:
-        # tkWindowObject.overrideredirect(1)
-        # tkWindowObject.wm_attributes('-type', 'splash')
-        # tkWindowObject.wm_attributes('-fullscreen', 'true')
 
     def _setAppTitle(self) -> None:
         self.tkWindowObject.title("mouse-grid")
+
+    def __hideWindowFromTaskbar(self):
+        """
+        source: https://stackoverflow.com/questions/59437366/python-tkinter-how-to-disable-window-showing-in-taskbar
+        Niby działa, ale tracę focusa na aplikacji i okno jako takie nie istnieje - nie można się na nim sfocusować.
+        """
+        self.tkWindowObject.overrideredirect(True)
+
+    def __makeMultiScreen(self):
+        """ Na razie eksperymentalnie tylko """
+        self.tkWindowObject.geometry("1920x1080-1900-0")

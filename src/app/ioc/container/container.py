@@ -1,11 +1,12 @@
 from injector import Injector
 # import srcmetaclassSingleton.singleton
-from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
+# from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
 
 
 # class Container():
 # class AppContainer(metaclass=SingleInstanceMetaClass):
 class AppContainer:
+    """ https://pypi.org/project/injector/ """
     container = Injector()
 
     # def __init__(self):

@@ -74,3 +74,6 @@ https://anthony-tuininga.github.io/cx_Freeze/
 https://www.reddit.com/r/Python/comments/9ijnsd/pyinstaller_onefile_exe_is_really_slow/
 cxfreeze 
 Nuitka
+
+### ukrywanie z taskbara:
+https://stackoverflow.com/questions/55754165/how-to-hide-top-level-window-icon-from-the-task-bar-without-hiding-its-border

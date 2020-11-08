@@ -3,6 +3,10 @@
 **mypy_cache
 # **/__init__.py
 
+# IDE trash:
+.idea/
+.vscode/.ropeproject/
+
 # virtual-environment
 /venv
 

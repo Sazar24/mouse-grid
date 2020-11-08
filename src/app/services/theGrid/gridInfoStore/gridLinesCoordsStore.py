@@ -9,7 +9,6 @@ class GridLinesCoordsStore(metaclass=SingleInstanceMetaClass):
     def __init__(self):
         self.density = 15
         self.calculateAllLinesCoordinates()
-        pass
 
     def setCurrentRectangleCoords(self, x1, y1, x2, y2):
         pass

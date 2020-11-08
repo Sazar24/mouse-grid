@@ -6,7 +6,6 @@ from injector import singleton, inject
 class WindowInstanceKeeper:
     def __init__(self):
         self.tkWindow = tk.Tk()
-        # pass
 
     def getWindow(self) -> tk.Tk:
         return self.tkWindow

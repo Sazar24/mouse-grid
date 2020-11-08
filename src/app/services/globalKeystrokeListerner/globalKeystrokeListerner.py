@@ -18,16 +18,15 @@ class GlobalKeystrokeListerner:
     def __init__(self, windowKeeper: WindowInstanceKeeper):
         window = windowKeeper.getWindow()
         self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)
-        pass
 
     def run(self) -> None:
-        print("in: GlobalKeystrokeListerner.run")
         self.__startListeninig()
 
     def __startListeninig(self) -> None:
         self.listener = keyboard.GlobalHotKeys({
             '<alt>+q': self.windowActionsCaller.hideWindow,
-            '<alt>+`': self.__appBringerHotkeyPressed
+            '<alt>+`': self.__appBringerHotkeyPressed,
+            '<shift>+<esc>': self.__quitProgram,
         })
         self.listener.start()
         print("listening...")
@@ -35,4 +34,8 @@ class GlobalKeystrokeListerner:
     def __appBringerHotkeyPressed(self) -> None:
         print("App bringer has been pressed!")
         self.windowActionsCaller.bringWindowToTop()
-        pass
+
+    def __quitProgram(self) -> None:
+        print("Wywołano zakończenie programu.")
+        self.windowActionsCaller.terminateProgram()
+        print("...bye bye.")

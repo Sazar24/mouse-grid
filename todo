@@ -18,3 +18,7 @@
 2020.09.03
 - params.json
 -- wbudowane ale nadpisywalne
+
+#
+2020.10.27:
+- działa Zoomer (podział ekranu i 'doszczegóławianie')

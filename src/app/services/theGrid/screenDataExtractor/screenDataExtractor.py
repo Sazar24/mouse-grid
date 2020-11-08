@@ -1,8 +1,14 @@
 import tkinter as tk
+from injector import inject
 
 
 class ScreenDataExtractor:
+    @inject
+    def __init__(self):
+        pass
+
     def getMaxXY(self):
+        """ zwraca x, y """
         x, y = self.__getFullScreenSize()
         return x, y
 
