@@ -9,10 +9,13 @@ result = screeninfo.get_monitors()
 #     Monitor(x=0, y=0, width=1920, height=1080, width_mm=527, height_mm=297, name='\\\\.\\DISPLAY2'),
 #     Monitor(x=1920, y=11, width=1920, height=1080, width_mm=509, height_mm=286, name='\\\\.\\DISPLAY3')
 # ]
+m: screeninfo.common.Monitor
 print("monitors:")
 for m in result:
     print(m)
 print("------------")
+
+print(f"Total monitors amount: {len(result)}")
 
 
 def get_monitor_from_coord(x, y):

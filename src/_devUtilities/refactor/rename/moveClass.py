@@ -15,8 +15,8 @@ from rope.refactor import move
 
 my_project = rope.base.project.Project('src')
 
-path_a = r'src/app/services/gridMaker/grid.py'
-path_b = r'src/app/services/grid.py'
+path_a = r'src/app/services/gridMaker/app.py'
+path_b = r'src/app/services/app.py'
 
 origin = libutils.path_to_resource(my_project, path_a)
 destination = libutils.path_to_resource(my_project, path_b)

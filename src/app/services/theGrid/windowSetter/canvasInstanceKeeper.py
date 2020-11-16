@@ -2,14 +2,14 @@ import tkinter as tk
 from injector import singleton, inject
 from app.modes.models.rectangle import Rectangle
 from app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenDataExtractor
-from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
+from app.services.theGrid.windowSetter.masterWindowInstanceKeeper import masterWindowInstanceKeeper
 
 
 @singleton
 class CanvasInstanceKeeper:
     @inject
     def __init__(self,
-                 windowInstanceKeeper: WindowInstanceKeeper,
+                 windowInstanceKeeper: masterWindowInstanceKeeper,
                  screenDataExtractor: ScreenDataExtractor
                  ):
         self.screenDataExtractor = screenDataExtractor

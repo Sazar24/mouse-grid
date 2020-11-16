@@ -9,13 +9,13 @@ from pynput import keyboard
 # if TYPE_CHECKING:
 #     from app.grid import GridMaker
 from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
-from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
+from app.services.theGrid.windowSetter.masterWindowInstanceKeeper import masterWindowInstanceKeeper
 from app.ioc.container.container import AppContainer
 
 
 @inject
 class GlobalKeystrokeListerner:
-    def __init__(self, windowKeeper: WindowInstanceKeeper):
+    def __init__(self, windowKeeper: masterWindowInstanceKeeper):
         window = windowKeeper.getWindow()
         self.windowActionsCaller = AppContainer.container.get(WindowActionsCaller)
 
@@ -24,7 +24,7 @@ class GlobalKeystrokeListerner:
 
     def __startListeninig(self) -> None:
         self.listener = keyboard.GlobalHotKeys({
-            '<alt>+q': self.windowActionsCaller.hideWindow,
+            '<alt>+q': self.windowActionsCaller.hideApp,
             '<alt>+`': self.__appBringerHotkeyPressed,
             '<shift>+<esc>': self.__quitProgram,
         })
@@ -33,7 +33,7 @@ class GlobalKeystrokeListerner:
 
     def __appBringerHotkeyPressed(self) -> None:
         print("App bringer has been pressed!")
-        self.windowActionsCaller.bringWindowToTop()
+        self.windowActionsCaller.bringAppToTop()
 
     def __quitProgram(self) -> None:
         print("Wywołano zakończenie programu.")

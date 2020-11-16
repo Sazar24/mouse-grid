@@ -38,7 +38,7 @@ class FileRefactorer:
 
 if __name__ == "__main__":
     # name1 = "mainGrid/gridDataProvider.py"
-    name1 = "mouseGrid/services/gridMaker/grid.py"
+    name1 = "mouseGrid/services/gridMaker/app.py"
     name2 = "theMG"
     # name2 = "mainGrid/gridDataProvider.py"
 

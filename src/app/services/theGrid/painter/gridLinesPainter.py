@@ -5,13 +5,13 @@ from app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenD
 from app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
 from app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
 from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
-from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
+from app.services.theGrid.windowSetter.masterWindowInstanceKeeper import masterWindowInstanceKeeper
 
 
 @singleton
 class GridLinesPainter():
     @inject
-    def __init__(self, windowInstanceKeeper: WindowInstanceKeeper):
+    def __init__(self, windowInstanceKeeper: masterWindowInstanceKeeper):
         self.gridWindow: tk.Tk = windowInstanceKeeper.getWindow()
         self.gridDensity: int = 15
         self.__initFullscreenCanvas()

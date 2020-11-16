@@ -1,6 +1,6 @@
 # from app.services.theGrid.grid import GridMaker
 # from .services.theGrid.grid import GridMaker
-from app.grid import App
+from app.app import App
 from cwdSetter import CWDSetter
 from app.ioc.container.container import AppContainer
 

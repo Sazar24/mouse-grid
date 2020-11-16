@@ -3,7 +3,7 @@ from injector import singleton, inject
 
 
 @singleton
-class WindowInstanceKeeper:
+class masterWindowInstanceKeeper:
     def __init__(self):
         self.tkWindow = tk.Tk()
 
