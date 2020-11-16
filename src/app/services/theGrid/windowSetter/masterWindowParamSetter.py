@@ -1,24 +1,25 @@
 import tkinter as tk
 from injector import inject
-from app.services.theGrid.windowSetter.windowInstanceKeeper import WindowInstanceKeeper
+from app.services.theGrid.windowSetter.masterWindowInstanceKeeper import masterWindowInstanceKeeper
 
 
 class WindowParamSetter:
     @inject
-    def __init__(self, windowInstanceKeeper: WindowInstanceKeeper):
+    def __init__(self, windowInstanceKeeper: masterWindowInstanceKeeper):
         self.windowInstanceKeeper = windowInstanceKeeper
 
     def setParams(self) -> None:
         self.tkWindowObject = self.windowInstanceKeeper.getWindow()
 
-        self._makeWindowTransparent()
-        self._makeWindowFullscreen()
+        # self._makeWindowTransparent()
+        # self._makeWindowFullscreen()
         self._setAppTitle()
-        self.__hideWindowFromTaskbar()
+        # self.__hideWindowFromTaskbar()
         # self.__makeMultiScreen()
 
     def _makeWindowFullscreen(self) -> None:
         self.tkWindowObject.wm_attributes('-fullscreen', 'true')
+        # self.tkWindowObject.state("zoomed")
 
     def _makeWindowTransparent(self) -> None:
         self.tkWindowObject.attributes('-transparentcolor', self.tkWindowObject['bg'])
