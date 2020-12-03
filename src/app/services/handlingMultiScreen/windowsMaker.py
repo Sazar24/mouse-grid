@@ -26,7 +26,6 @@ class WindowsMaker:
 
     def _makeWindows(self):
         self.__buildAllWindows()
-        pass
 
     def __buildAllWindows(self):
         self.getParentWindow()

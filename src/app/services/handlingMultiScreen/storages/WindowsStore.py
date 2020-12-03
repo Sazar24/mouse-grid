@@ -10,7 +10,9 @@ class WindowsStore:
     __knownWindows: List[ScreenWindow]
 
     @inject
-    def __init__(self, screensInfoExtractor: ScreensInfoExtractor):
+    def __init__(self,
+                 screensInfoExtractor: ScreensInfoExtractor,
+                 ):
         pass
 
     def update(self, windows: List[ScreenWindow]):
@@ -20,6 +22,9 @@ class WindowsStore:
 
     def getWindows(self) -> List[ScreenWindow]:
         return self.__knownWindows
+
+    def getMainWindow(self) -> ScreenWindow:
+        return self.__knownWindows[0]
 
     def getWindowByNumericId(self, numericId: int) -> ScreenWindow:
         match: List[ScreenWindow] = list(filter(lambda s: s.id == numericId, self.__knownWindows))

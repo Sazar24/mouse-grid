@@ -20,8 +20,6 @@ class App:
     def __init__(
             self,
             windowKeeper: masterWindowInstanceKeeper,
-            gridLinesPainter: GridLinesPainter,
-            # keysBinder: KeysBinder,
             globalKeystrokeListener: GlobalKeystrokeListerner,
             windowParamSetter: MasterWindowParamSetter,
             focuser: Focuser,
@@ -29,8 +27,6 @@ class App:
     ):
         self.window = windowKeeper.getWindow()
         self.globalKeysListener = globalKeystrokeListener
-        self.linesPainter = gridLinesPainter
-        # self.keysBinder: KeysBinder = keysBinder
         self.windowParamSetter: MasterWindowParamSetter = windowParamSetter
         self.focuser = focuser
         self.windowsMaker = windowsMaker
@@ -40,34 +36,23 @@ class App:
         self.__initiateAndStartWindow()
 
     def __initiateAndStartWindow(self) -> None:
-        self._startListening()
+        self.__startListening()
         self.__prepareWindows()
-        self.__setWindowParams()
-        self._drawLines()
-        # self._bindKeys()
+        self.__runInitialMode()
         self._startTkWindowLoop()
 
     def __setWindowParams(self) -> None:
         self.windowParamSetter.setParams()
 
-    def _drawLines(self) -> None:
-        # self.linesPainter.drawLines()
+    def __runInitialMode(self) -> None:
         self.focuser.showMe()
 
-    def _startListening(self) -> None:
+    def __startListening(self) -> None:
         self.globalKeysListener.run()
 
     def _startTkWindowLoop(self) -> None:
-        # self.window.geometry("1920x1080-1680-0")
-        # self.window.wm_attributes('-fullscreen', 'true')
-        # self.window.overrideredirect(True)
-        # self.window.geometry("1920x1080-1680-0")
-        # self.window.attributes('-topmost', True)
-        # self.window.update()
         self.window.mainloop()
-
-    # def _bindKeys(self) -> None:
-    #     self.keysBinder.bindKeys_dummyMode()
 
     def __prepareWindows(self) -> None:
         self.windowsMaker.run()
+        self.__setWindowParams()

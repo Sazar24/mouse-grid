@@ -1,10 +1,9 @@
 import tkinter as tk
-from typing import Tuple, List
+from typing import List
 from injector import singleton, inject
 from app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenDataExtractor
 from app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
 from app.services.theGrid.windowSetter.masterWindowInstanceKeeper import masterWindowInstanceKeeper
-from app.services.kwargsKeeper.kwargsKeeper import KwKeeper
 from app.modes.models.rectangle import Rectangle
 from app.modes.focuser.service.cellsPositionCalculator import CellsPositionCalculator
 from app.modes.models.enums.innerPartRelativePosition import InnerPartRelativePosition_enum
@@ -18,6 +17,7 @@ from app.modes.focuser.service.historyKeeper import HistoryKeeper
 from app.services.handlingMultiScreen.storages.WindowsStore import WindowsStore
 from app.services.handlingMultiScreen.screenWindow import ScreenWindow
 from app.services.handlingMultiScreen.activityHandler.focusedScreenKnower import FocusedScreenManager
+from app.modes.focuser.service.onWindowDrawing import OnWindowDrawing
 
 
 @singleton
@@ -36,6 +36,7 @@ class Focuser:
                  historyKeeper: HistoryKeeper,
                  windowsStore: WindowsStore,
                  focusedScreenManager: FocusedScreenManager,
+                 onWindowDrawing: OnWindowDrawing,
                  ):
         self.windowActionsCaller = windowActionsCaller
         self.screenDataExtractor = screenDataExtractor
@@ -49,14 +50,22 @@ class Focuser:
         self.historyKeeper = historyKeeper
         self.windowsStore = windowsStore
         self.focusedScreenManager = focusedScreenManager
+        self.onWindowDrawing = onWindowDrawing
 
     def showMe(self):
-        self._bindBasicKeys()
+        self.__bindScreenPickKeys()
+        self.focusedScreenManager.monitorWindowsFocusState()
+        self.onWindowDrawing.drawOnActiveWindow()
         # self.__setRootCell()
         # self.focusedScreenManager.
         # self.__drawRootCellLines()
 
     def __pickScreen(self):
+        pass
+
+    def drawOnFocusedScreen(self, window: ScreenWindow):
+        # window = self.focusedScreenManager.
+
         pass
 
     def __drawRootCellLines(self):
@@ -70,32 +79,35 @@ class Focuser:
     def __clearCanvas(self):
         self.canvas.delete('all')
 
-    def _bindBasicKeys(self) -> None:
-        goDirection = InnerPartRelativePosition_enum
+    def __bindScreenPickKeys(self) -> None:
         allScreens: List[ScreenWindow] = self.windowsStore.getWindows()
         for screen in allScreens:
             self.__bindScrenNumbers(len(allScreens), screen)
             # callableNr: str = str(screen.id)
             # print(f"callableNr: {callableNr}. name: {screen.name}")
-            # screen.windowForScreen.bind(callableNr, lambda _: self.windowActionsCaller.hideWindowsExceptGivenOne(screen.numericId))
-            # screen.windowForScreen.bind(callableNr, self.__handleScreenPick(name))
-            # screen.windowForScreen.bind('w', lambda _: self.__handleBindedKeyPress(goDirection.topLeft))
-            # screen.windowForScreen.bind('s', lambda _: self.__handleBindedKeyPress(goDirection.botLeft))
-            # screen.windowForScreen.bind('e', lambda _: self.__handleBindedKeyPress(goDirection.topRight))
-            # screen.windowForScreen.bind('d', lambda _: self.__handleBindedKeyPress(goDirection.botRight))
-            # screen.windowForScreen.bind('g', lambda _: self.__moveToCurrentCell())
-            # screen.windowForScreen.bind('c', lambda _: self.__moveToAndClickCurrentCell())
-            # screen.windowForScreen.bind('r', lambda _: self.__goBackInHistory())
-
-    def __handleScreenPick(self, _id):
-        return lambda _: self.windowActionsCaller.hideWindowsExceptGivenOne(_id)
 
     def __bindScrenNumbers(self, screensAmount: int, screen: ScreenWindow):
         for i in range(1, screensAmount + 1):
             print(f"binding: {i}")
             screen.windowForScreen.bind(str(i), self.__handleScreenPick(i))
 
+    def __handleScreenPick(self, _id):
+        return lambda _: self.windowActionsCaller.hideWindowsExceptGivenOne(_id)
+
+    def __bindRestOfTheKeys(self, screen: ScreenWindow):
+        # screen.windowForScreen.bind(callableNr, lambda _: self.windowActionsCaller.hideWindowsExceptGivenOne(screen.numericId))
+        # screen.windowForScreen.bind(callableNr, self.__handleScreenPick(name))
+        # screen.windowForScreen.bind('w', lambda _: self.__handleBindedKeyPress(goDirection.topLeft))
+        # screen.windowForScreen.bind('s', lambda _: self.__handleBindedKeyPress(goDirection.botLeft))
+        # screen.windowForScreen.bind('e', lambda _: self.__handleBindedKeyPress(goDirection.topRight))
+        # screen.windowForScreen.bind('d', lambda _: self.__handleBindedKeyPress(goDirection.botRight))
+        # screen.windowForScreen.bind('g', lambda _: self.__moveToCurrentCell())
+        # screen.windowForScreen.bind('c', lambda _: self.__moveToAndClickCurrentCell())
+        # screen.windowForScreen.bind('r', lambda _: self.__goBackInHistory())
+        pass
+
     def __moveToAndClickCurrentCell(self) -> None:
+        """ currently DEPRECATED """
         print("click!")
         self.__moveToCurrentCell()
         self.windowActionsCaller.hideApp()
@@ -103,6 +115,7 @@ class Focuser:
         self.__drawInitialScreen()
 
     def __drawInitialScreen(self) -> None:
+        """ currently DEPRECATED """
         rootCell = self.historyKeeper.getRootCell()
         self.__drawCell(rootCell)
         self.historyKeeper.clearHistory()
@@ -118,6 +131,7 @@ class Focuser:
         self.mouseHandler.moveMouseToPoint(midPoint)
 
     def __handleBindedKeyPress(self, goDirection: InnerPartRelativePosition_enum):
+        """ currently DEPRECATED """
         self.__focusOnCell(goDirection)
 
     def __focusOnCell(self, zoomDirection: InnerPartRelativePosition_enum):

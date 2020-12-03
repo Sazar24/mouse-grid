@@ -16,6 +16,7 @@ root = tk.Tk()
 label = tk.Label(width=30)
 label.pack(side="top", fill="both", expand=True)
 
+root.overrideredirect(True)
 root.bind("<FocusIn>", on_focus_in)
 root.bind("<FocusOut>", on_focus_out)
 

@@ -3,6 +3,8 @@ from screeninfo.common import Monitor
 
 
 class ScreenWindow:
+    amIFocused: bool = False
+
     def __init__(self, parentWindow: tk.Tk, monitor: Monitor, _id: int):
         self.parentWindow = parentWindow
         self.monitor = monitor
@@ -13,6 +15,7 @@ class ScreenWindow:
         # self.quitButton = tk.Button(self.frame, text='Quit', width=25, command=self.close_windows)
         # self.quitButton.pack()
         # self.frame.pack()
+        self.lastText = self.canvas.create_text(0, 60, text=".", fill="red", anchor=tk.NW)
 
     def __createMe(self, monitor: Monitor):
         self.windowForScreen = tk.Toplevel(self.parentWindow)
@@ -77,9 +80,13 @@ class ScreenWindow:
     def showName(self):
         x = 0
         y = 0
-        self.textBg = self.canvas.create_rectangle(x, y, 125, 50, fill="gray", outline=None)
+        self.textBg = self.canvas.create_rectangle(x, y, 125, 90, fill="gray", outline=None)
         self.name_textId = self.canvas.create_text(x, y, text=f"id: {self.name}", fill="green", anchor=tk.NW)
         self.canvas.create_text(x, y + 23, text=f"id: {self.id}", fill="green", anchor=tk.NW)
+
+    def showText(self, txt):
+        self.canvas.delete(self.lastText)
+        self.lastText = self.canvas.create_text(0, 60, text=f"{txt}", fill="red", anchor=tk.NW)
 
     def hideName(self):
         self.canvas.delete(self.textBg)

@@ -5,6 +5,7 @@ import tkinter as tk
 from app.services.theGrid.windowSetter.masterWindowInstanceKeeper import masterWindowInstanceKeeper
 from app.services.handlingMultiScreen.storages.WindowsStore import WindowsStore
 from app.services.handlingMultiScreen.screenWindow import ScreenWindow
+from app.services.handlingMultiScreen.activityHandler.focusedScreenKnower import FocusedScreenManager
 
 
 class WindowActionsCaller:
@@ -13,9 +14,11 @@ class WindowActionsCaller:
     def __init__(self,
                  masterWindowInstanceKeeper: masterWindowInstanceKeeper,
                  windowsStore: WindowsStore,
+                 focusedScreenManager: FocusedScreenManager
                  ):
         self.masterWindow: tk.Tk = masterWindowInstanceKeeper.getWindow()
         self.windowsStore: WindowsStore = windowsStore
+        self.focusedScreenManager: FocusedScreenManager = focusedScreenManager
 
     def bringAppToTop(self) -> None:
         """
@@ -23,6 +26,7 @@ class WindowActionsCaller:
         #1: gdy aplikacja aktywna, alt+tab buguje niniejszą funkcję
         #2: Naprzemienne ukrywanie apki i przywoływanie jej, przesuwa oknoNr2
 
+        solutions:
         #1. Użyj pynputa
         """
 
@@ -30,42 +34,18 @@ class WindowActionsCaller:
         for knownMonitor in allWindows:
             knownMonitor.windowForScreen.update()
             knownMonitor.windowForScreen.deiconify()
-        # allWindows[1].windowForScreen.update()
 
-        # self.masterWindow.overrideredirect(False)
-        # self.masterWindow.update()
-
-        # self.masterWindow.deiconify()
-        # self.masterWindow.focus_set()
-        # self.masterWindow.focus_force()
-
-        # self.masterWindow.attributes("-topmost", 100)
-        # self.masterWindow.overrideredirect(True)
-        # self.masterWindow.after(1, lambda: self.masterWindow.focus_force())
-        # self.masterWindow.focus_force()
-        # current = self.masterWindow.focus_get()
-        # print(current)
-        # allWindows[1].windowForScreen.overrideredirect(False)
-        # allWindows[1].windowForScreen.overrideredirect(False)
-        # allWindows[1].windowForScreen.attributes('-topmost', True)
-        # # allWindows[1].windowForScreen.attributes('-topmost', False)
-        allWindows[1].windowForScreen.focus_set()
-        allWindows[1].windowForScreen.focus_force()
-        # # allWindows[1].windowForScreen.focus_set()
-        # allWindows[1].windowForScreen.after(1, lambda _: allWindows[1].windowForScreen.focus_force())
-        # allWindows[1].windowForScreen.after(1, allWindows[1].windowForScreen.focus_force())
-        # allWindows[1].windowForScreen.overrideredirect(True)
-        # allWindows[1].windowForScreen.update()
+        sleep(0.001)
+        allWindows[0].windowForScreen.focus_set()
+        allWindows[0].windowForScreen.focus_force()
 
     def bringWindowToTop(self, numericId: int):
         for knownMonitor in self.windowsStore.getWindows():
             if knownMonitor.id == numericId:
-                knownMonitor.windowForScreen.update()
-                # knownMonitor.windowForScreen.focus_force()
-                # knownMonitor.windowForScreen.attributes("-topmost", 100)
+                print(f"bringing to top window with id: {numericId}")
+                # knownMonitor.windowForScreen.update()
                 # knownMonitor.windowForScreen.focus_set()
                 knownMonitor.windowForScreen.deiconify()
-                # knownMonitor.windowForScreen.attributes("-topmost", 100)
                 knownMonitor.windowForScreen.focus_force()
                 knownMonitor.windowForScreen.update()
 
@@ -82,13 +62,13 @@ class WindowActionsCaller:
     # def hideWindowsExceptGivenOne(self, window: ScreenWindow):
     # def hideWindowsExceptGivenOne(self, numericId: int):
     def hideWindowsExceptGivenOne(self, _id: int):
-        # print(f"Attempt to hide all except window with numericId: {window.numericId} and name: {window._id}.")
         print(f"Attempt to hide all except window with id: {_id}")
         for knownMonitor in self.windowsStore.getWindows():
             if knownMonitor.id != _id:
                 print(f"Hiding window with id: {knownMonitor.id}, name: {knownMonitor.name}. (visible-screeenId: {_id})")
                 self._hideWindow(knownMonitor)
         self.bringWindowToTop(_id)
+        self.focusedScreenManager.ensureScreenWindowFocus(_id)
 
     def _hideWindow(self, window: ScreenWindow):
         # window.windowForScreen.overrideredirect(False)
