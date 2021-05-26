@@ -53,7 +53,7 @@ workaround na uniknięcie circular-importów - przy typowaniu
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from app.grid import GridMaker
+    from src.app.grid import GridMaker
 
 ### 
 multiple-screens:

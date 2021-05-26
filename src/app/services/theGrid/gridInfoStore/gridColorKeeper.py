@@ -1,4 +1,4 @@
-from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
+from src.app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
 from typing import List
 
 

@@ -1,4 +1,4 @@
-from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
+from src.app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
 
 
 class ActiveCursorPositionKeeper(metaclass=SingleInstanceMetaClass):
@@ -22,5 +22,5 @@ class ActiveCursorPositionKeeper(metaclass=SingleInstanceMetaClass):
         self.callMovement()
 
     def callMovement(self) -> None:
-        from app.services.mouseEmulator.mouseEventsCreator import MouseEventsCreator
+        from src.app.services.mouseEmulator.mouseEventsCreator import MouseEventsCreator
         MouseEventsCreator().moveMouse(self.currentPos_x, self.currentPos_y)

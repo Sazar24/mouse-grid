@@ -5,8 +5,8 @@
 # from typing import TYPE_CHECKING
 from pynput import keyboard
 # if TYPE_CHECKING:
-#     from app.grid import GridMaker
-from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
+#     from src.app.grid import GridMaker
+from src.app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
 import tkinter as tk
 
 

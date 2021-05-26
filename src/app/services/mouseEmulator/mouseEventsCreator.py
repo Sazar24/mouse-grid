@@ -1,8 +1,8 @@
 from typing import List, Tuple
 from pynput.mouse import Controller, Button
 # docs-source: https://pynput.readthedocs.io/en/latest/mouse.html#controlling-the-mouse
-from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
-from app.services.theGrid.gridInfoStore.activeCursorPositionKeeper import ActiveCursorPositionKeeper
+from src.app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
+from src.app.services.theGrid.gridInfoStore.activeCursorPositionKeeper import ActiveCursorPositionKeeper
 
 
 class MouseEventsCreator:

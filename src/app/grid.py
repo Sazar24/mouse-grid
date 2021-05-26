@@ -1,15 +1,15 @@
 import tkinter as tk
 
-from app.services.theGrid.painter.gridLinesPainter import GridLinesPainter
-from app.services.theGrid.keysBinder.keysBinder import KeysBinder
-from app.services.theGrid.windowSetter.windowParamSetter import WindowParamSetter
-from app.services.globalKeystrokeListerner.globalKeystrokeListerner import GlobalKeystrokeListerner
+from src.app.services.theGrid.painter.gridLinesPainter import GridLinesPainter
+from src.app.services.theGrid.keysBinder.keysBinder import KeysBinder
+from src.app.services.theGrid.windowSetter.windowParamSetter import WindowParamSetter
+from src.app.services.globalKeystrokeListerner.globalKeystrokeListerner import GlobalKeystrokeListerner
 
 
 class GridMaker:
     def __init__(self):
         self.window = tk.Tk()
-        self.__listener__ = GlobalKeystrokeListerner(self.window)
+        self.__listener = GlobalKeystrokeListerner(self.window)
         self.linesPainter = GridLinesPainter()
         self.keysBinder = KeysBinder(self.linesPainter, self.window)
 
@@ -31,7 +31,7 @@ class GridMaker:
         self.linesPainter.drawLines()
 
     def _startListening(self) -> None:
-        self.__listener__.run()
+        self.__listener.run()
 
     def _startTkWindowLoop(self) -> None:
         self.window.mainloop()

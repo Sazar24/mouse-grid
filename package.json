@@ -2,9 +2,14 @@
     "scripts": {
         "activate_old": "venv\\Scripts\\activate.bat",
         "activate": "cd venv/Scripts && activate.bat",
-        "start": "python src\\appStart.py",
-        "mypy": "mypy src & echo \n----", 
+        "start": "nodemon --exec %cd%/venv/scripts/python -m src.appStart",
+        "start-old": "nodemon --exec %cd%/venv/scripts/python src/appStart.py",
+        "start-one": "python -m src.appStart",
+        "mypy": "mypy src & echo \n----",
         "build": "pyinstaller --noconfirm src\\appStart.py --paths=src --hidden-import=pynput --icon=grid-ico.ico",
         "saveDependencies": "pip freeze > requirements.txt"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
     }
 }

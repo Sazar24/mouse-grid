@@ -1,0 +1,16 @@
+{
+    "exclude": [
+        "**/node_modules",
+        "**/__pycache__",
+        "c:/program files/python38/lib/tkinter",
+        "**/lib/**",
+        "C:/program files/python38/lib/tkinter/__init__.py",
+    ],
+    "ignore": [
+        "**/node_modules",
+        "**/__pycache__",
+        "c:/program files/python38/lib/tkinter",
+        "**/lib/**",
+        "C:/program files/python38/lib/tkinter/__init__.py",
+    ],
+}

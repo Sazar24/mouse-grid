@@ -6,6 +6,15 @@
         // "**mypy_cache": true,
         // "**/__init__.py": true,
     },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        // ".vscode": true,
+        // "/.venv": true
+        "**/*ropeproject*": true,
+        "./src/.ropeproject/config.py": true,
+    },
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
@@ -19,7 +28,7 @@
         // "--strict"
     ],
     "python.linting.pylintArgs": [
-        "--ignore-relative-beyond-top-level--CheckMe",
+        // "--ignore-relative-beyond-top-level--CheckMe",
         "--max-line-length=180"
     ],
     "python.linting.flake8Args": [
@@ -33,4 +42,24 @@
     "python.jediEnabled": false,
     "python.languageServer": "Microsoft",
     // "python.languageServer": "Microsoft"
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder}/src",
+    },
+
+    // "python.linting.flake8Args": [
+    //     "--ignore=E501,E722,E125,W503,W504,E116",
+    //     "--max-line-length=220"
+    // ],
+    // "python.jediEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./src",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.unittestEnabled": false,
+    "python.testing.promptToConfigure": false,
 }

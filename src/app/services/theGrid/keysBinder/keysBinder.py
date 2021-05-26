@@ -1,12 +1,12 @@
 import tkinter as tk
 from typing import Callable
 
-from app.services.theGrid.painter.gridLinesPainter import GridLinesPainter
-from app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
-from app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
-from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
-from app.services.mouseEmulator.mouseEventsCreator import MouseEventsCreator
-from app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
+from src.app.services.theGrid.painter.gridLinesPainter import GridLinesPainter
+from src.app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
+from src.app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
+from src.app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
+from src.app.services.mouseEmulator.mouseEventsCreator import MouseEventsCreator
+from src.app.services.theGrid.windowSetter.windowActionsCaller import WindowActionsCaller
 
 
 class KeysBinder:

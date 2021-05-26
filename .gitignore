@@ -6,6 +6,9 @@
 # virtual-environment
 /venv
 
+#
+/node_modules
+
 # exe version:
 /build
 /dist

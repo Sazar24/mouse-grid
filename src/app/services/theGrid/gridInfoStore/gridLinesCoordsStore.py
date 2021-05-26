@@ -1,6 +1,6 @@
 # from abc import metaclass
-from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
-from app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenDataExtractor
+from src.app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
+from src.app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenDataExtractor
 from typing import List, Tuple
 
 

@@ -1,5 +1,5 @@
-from app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
-from app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
+from src.app.utilities.metaclassSingleton.singleton import SingleInstanceMetaClass
+from src.app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
 from typing import List, Tuple
 
 

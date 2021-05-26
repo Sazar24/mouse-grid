@@ -1,8 +1,8 @@
 import tkinter as tk
-from app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenDataExtractor
-from app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
-from app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
-from app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
+from src.app.services.theGrid.screenDataExtractor.screenDataExtractor import ScreenDataExtractor
+from src.app.services.theGrid.gridInfoStore.gridLinesCoordsStore import GridLinesCoordsStore
+from src.app.services.theGrid.gridInfoStore.gridColorKeeper import GridColorKeeper
+from src.app.services.theGrid.gridInfoStore.activeRectangleKeeper import ActiveRectangleKeeper
 from typing import Tuple, List
 
 
@@ -51,14 +51,15 @@ class GridLinesPainter:
         self.drawBoldOutlineOnActiveRectangle(8)
 
     def drawColumns(self):
-        verticalLines: Tuple[int, int, int, int] = self.coordsStore.getAllVertcicalLines()
+        verticalLines: List[Tuple[int, int, int, int]] = self.coordsStore.getAllVertcicalLines()
+        lineCoords: Tuple[int, int, int, int]
         for lineCoords in verticalLines:
-            self.gridCanvas.create_line(lineCoords, fill=self.color)
+            self.gridCanvas.create_line(lineCoords, fill=self.color)  # type: ignore
 
     def drawRows(self):
-        horizontalLines: Tuple[int, int, int, int] = self.coordsStore.getAllHorizontalLines()
+        horizontalLines: List[Tuple[int, int, int, int]] = self.coordsStore.getAllHorizontalLines()
         for lineCoords in horizontalLines:
-            self.gridCanvas.create_line(lineCoords, fill=self.color)
+            self.gridCanvas.create_line(lineCoords, fill=self.color)  # type: ignore
 
     def drawBoldOutlineOnActiveRectangle(self, boldValue: int) -> None:
         rectanglePoints: List[Tuple[int, int]] = self.activeRectangleKeeper.getActiveRectangleCoords()
